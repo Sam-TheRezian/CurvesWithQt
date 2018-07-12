@@ -44,6 +44,9 @@ void RenderArea::onShapeChanged() {
         mStepCount = 256;
         break;
     case FutureCurve:
+        mIntervalLength = 1;
+        mScale = 50;
+        mStepCount = 128;
         break;
     default:
         break;
@@ -89,14 +92,13 @@ QPointF RenderArea::compute(float t) {
         return compute_hypocycloid(t);
         break;
     case FutureCurve:
+        return compute_future_curve(t);
         break;
     default:
         break;
     }
     return QPointF(0, 0);
 }
-
-
 
 void RenderArea::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
