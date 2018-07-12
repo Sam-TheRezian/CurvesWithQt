@@ -71,7 +71,7 @@ QPointF RenderArea::compute_hypocycloid(float t) {
 }
 
 QPointF RenderArea::compute_future_curve(float t) {
-    return QPointF(1 - t, 1 - t);
+    return QPointF(1 - t, 1 - t); 
 }
 
 QPointF RenderArea::compute(float t) {
