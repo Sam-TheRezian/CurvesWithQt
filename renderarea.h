@@ -35,6 +35,9 @@ public:
     void setStepCount(int stepCount) { mStepCount = stepCount; repaint(); }
     int getStepCount() const { return mStepCount; }
 
+    void setShapeColor(QColor color) { mShapeColor = color; }
+    QColor getShapeColor() const { return mShapeColor; }
+
 
 
 private:
