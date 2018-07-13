@@ -25,17 +25,17 @@ void RenderArea::onShapeChanged() {
     switch (mShape) {
     case Astroid:
         mStepCount = 256;
-        RenderArea::mScale = 40;
+        mScale = 40;
         mIntervalLength = 2 * M_PI;
         break;
     case Cycloid:
         mStepCount = 128;
-        RenderArea::mScale = 4;
-        mIntervalLength = 6 * M_PI;
+        mScale = 2;
+        mIntervalLength = M_PI;
         break;
     case HuygensCycloid:
         mStepCount = 256;
-        RenderArea::mScale = 4;
+        mScale = 4;
         mIntervalLength = 4 * M_PI;
         break;
     case HypoCycloid:
@@ -45,7 +45,7 @@ void RenderArea::onShapeChanged() {
         break;
     case FutureCurve:
         mIntervalLength = 1;
-        mScale = 50;
+        mScale = 5;
         mStepCount = 128;
         break;
     default:
@@ -112,12 +112,19 @@ void RenderArea::paintEvent(QPaintEvent *event) {
 
     QPoint center = this->rect().center();
     float step = mIntervalLength / mStepCount;
+
+    QPointF prevPoint = compute(0);
+    QPoint prevPixel;
+    prevPixel.setX(prevPoint.x() * mScale + center.x());
+    prevPixel.setY(prevPoint.y() * mScale + center.y());
+
     for(float t = 0; t < mIntervalLength; t += step) {
         QPointF point = compute(t);
         QPoint pixel;
         pixel.setX(point.x() * mScale + center.x());
         pixel.setY(point.y() * mScale + center.y()) ;
 
-        painter.drawPoint(pixel);
+        painter.drawLine(pixel, prevPixel);
+        prevPixel = pixel;
     }
 }

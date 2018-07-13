@@ -26,6 +26,17 @@ public:
     void setShape(ShapeType shape) { mShape = shape; }
     ShapeType getShape() const { return mShape; }
 
+    void setScale(double scale) { mScale = scale; repaint(); }
+    double getScale() const { return mScale; }
+
+    void setInterval(double interval) { mIntervalLength = interval; repaint(); }
+    double getInterval() const { return mIntervalLength; }
+
+    void setStepCount(int stepCount) { mStepCount = stepCount; repaint(); }
+    int getStepCount() const { return mStepCount; }
+
+
+
 private:
     QColor mBackgroundColor;
     QColor mShapeColor;
